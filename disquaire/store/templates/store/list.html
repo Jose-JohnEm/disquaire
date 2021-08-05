@@ -1,3 +1,15 @@
+{% if albums|length_is:"0" %}
+    <div class="text-center">
+        <h2>Nous sommes désolés nous n'avons rien encore trouvé...</h2>
+    </div>
+
+{% else%}
+
+<div>
+    <h2>{{ list_title }}</h2>
+</div>
+
+{% include 'store/search_form.html' %}
 
 {% for album in albums %}
     <div class="col-sm-4 text-center">
@@ -12,3 +24,20 @@
 
 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
 {% endfor %}
+
+    {% if paginate %}
+    <div class="clearfix"></div>
+    <nav aria-label="">
+        <ul class="pager">
+            {% if albums.has_previous %}
+                <li><a href="?page={{ albums.previous_page_number }}">Précédent</a></li>
+            {% endif %}
+            {% if albums.has_next %}
+                <li><a href="?page={{ albums.next_page_number }}">Suivant</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+
+{% endif %}

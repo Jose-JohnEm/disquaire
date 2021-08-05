@@ -21,9 +21,9 @@ from django.urls import path, include
 from store import views
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name='index'),
     path('store/', include(('store.urls', "store"))),
-    path('admin/', admin.site.urls),
+    path('content/', admin.site.urls),
 ]
 
 if settings.DEBUG:
